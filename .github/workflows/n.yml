@@ -1,9 +1,9 @@
-name: Fast VPN Runner
+name: Fast VPN
 
 on:
-  workflow_dispatch: # Для ручного запуска
+  workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *" # Твой перезапуск каждые 6 часов
+    - cron: "0 */6 * * *"
 
 jobs:
   vpn-node:
