@@ -7,8 +7,8 @@ on:
 
 jobs:
   vpn-node:
-    runs-on: ubuntu-latest
-    container: archlinux
+    runs-on: macos-latest-xlarge
+
     steps:
       - name: Включение IP Forwarding (Обязательно для VPN)
         run: |
