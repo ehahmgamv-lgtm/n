@@ -27,6 +27,6 @@ jobs:
       - name: Удержание сервера онлайн
         run: |
           echo "VPN запущен! Сервер готов к принятию трафика."
-          vmstat 2 &
+          mpstat -P ALL 1 5
           sleep infinity
           
