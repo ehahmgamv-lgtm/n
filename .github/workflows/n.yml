@@ -22,7 +22,7 @@ jobs:
         env:
           TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
         run: |
-          sudo tailscale up --authkey=${TAILSCALE_AUTHKEY} --tun=kernel-networking --advertise-exit-node --hostname=github-fast-vpn
+          sudo tailscale up --authkey=${TAILSCALE_AUTHKEY} --advertise-exit-node --hostname=github-fast-vpn
           
       - name: Удержание сервера онлайн
         run: |
