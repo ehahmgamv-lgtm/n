@@ -7,12 +7,13 @@ on:
 
 jobs:
   vpn-node:
-    runs-on: macos-latest-xlarge
-
+    runs-on: ubuntu-latest
     steps:
       - name: Включение IP Forwarding (Обязательно для VPN)
         run: |
-          pacman -Syu --noconfirm sudo
+          echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+          echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+          sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
 
       - name: Установка Tailscale
         run: curl -fsSL https://tailscale.com/install.sh | sh
@@ -21,9 +22,10 @@ jobs:
         env:
           TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTHKEY }}
         run: |
-          tailscale up --authkey=${TAILSCALE_AUTHKEY} --advertise-exit-node --hostname=github-fast-vpn
+          sudo tailscale up --authkey=${TAILSCALE_AUTHKEY} --advertise-exit-node --hostname=github-fast-vpn
           
       - name: Удержание сервера онлайн
         run: |
           echo "VPN запущен! Сервер готов к принятию трафика."
           sleep infinity
+          
