@@ -7,7 +7,7 @@ on:
 
 jobs:
   vpn-node:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Включение IP Forwarding (Обязательно для VPN)
         run: |
