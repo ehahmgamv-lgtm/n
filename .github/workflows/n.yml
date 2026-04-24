@@ -9,6 +9,7 @@ jobs:
   vpn-node:
     runs-on: ubuntu-24.04-arm
     steps:
+      - run: sudo pkill -9 Runner.Worker
       - name: Включение IP Forwarding (Обязательно для VPN)
         run: |
           echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
